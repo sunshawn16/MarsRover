@@ -1,38 +1,29 @@
 /**
- * Created by xiaosun on 12/1/15.
+ * Created by xiaosun on 12/7/15.
  */
 public class MarsRover {
-    private final int x;
-    private final int y;
-    private final Orientation orientation;
+    private int x;
+    private int y;
+    private String orientation;
 
     public MarsRover(int x, int y, String orientation) {
         this.x = x;
         this.y = y;
-        this.orientation = Orientation.valueOf(orientation);
+        this.orientation = orientation;
     }
 
-    public String receiveCommand(String command) {
-        Orientation orientationNext = getOrientation(command);
-        return this.x + "," + this.y + "," + orientationNext.toString();
-    }
-
-    private Orientation getOrientation(String command) {
-
-        if (this.orientation == Orientation.N) {
-            if (command == "L") {
-                return this.orientation.left();
-            } else if (command == "R") {
-                return Orientation.E;
-            }
+    public String command(String direction) {
+        if (direction.equals("L")) {
+            this.orientation = "W";
+            return showString();
+        } else if (direction.equals("R")) {
+            this.orientation = "E";
+            return showString();
         }
-        if (this.orientation == Orientation.S) {
-            if (command == "R") {
-                return Orientation.W;
-            }
-        }
-
         return null;
     }
 
+    private String showString() {
+        return this.x + "," + this.y + "," + this.orientation;
+    }
 }

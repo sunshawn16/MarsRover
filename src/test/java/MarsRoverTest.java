@@ -1,36 +1,25 @@
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Created by xiaosun on 12/1/15.
+ * Created by xiaosun on 12/7/15.
  */
 public class MarsRoverTest {
     @Test
-    public void shouldFaceWestWhenReciveCommandLeft() throws Exception {
-        MarsRover marsRover = new MarsRover(1,1,"N");
-
-        String result = marsRover.receiveCommand("L");
-
-        assertThat(result, is("1,1,W"));
-    }
-
-    @Test
-    public void shouldFaceEastWhenReceivingCommandRight() throws Exception {
+    public void shouldFaceWestWhenTurnLeftGivenNorth() throws Exception {
         MarsRover marsRover = new MarsRover(1, 1, "N");
 
-        String result = marsRover.receiveCommand("R");
-
-        assertThat(result,is("1,1,E"));
+        assertThat(marsRover.command("L"), is("1,1,W"));
     }
 
     @Test
-    public void whatever() throws Exception {
-        MarsRover marsRover = new MarsRover(1, 1, "S");
+    public void shouldFaceEastWhenTurnRightGivenNorth() throws Exception {
 
-        String result = marsRover.receiveCommand("R");
+        MarsRover marsRover = new MarsRover(1, 1, "N");
 
-        assertThat(result,is("1,1,W"));
+        assertThat(marsRover.command("R"), is("1,1,E"));
+
     }
 }
